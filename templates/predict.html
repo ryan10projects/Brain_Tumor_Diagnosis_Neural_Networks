@@ -1,0 +1,229 @@
+{% extends "base.html" %}
+
+{% block main %}
+<!-- Modal -->
+<style>html, body {
+      
+    background: linear-gradient(to bottom, #ccffff 0%, #ff99cc 100%)
+     
+    }</style>
+
+<style>
+
+/* 6 */
+.btn-6 {
+  background: rgb(247,150,192);
+background: radial-gradient(circle, rgba(247,150,192,1) 0%, rgba(118,174,241,1) 100%);
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.btn-6 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-6:before,
+.btn-6:after {
+  position: absolute;
+  content: "";
+  height: 0%;
+  width: 1px;
+ box-shadow:
+   -1px -1px 20px 0px rgba(255,255,255,1),
+   -4px -4px 5px 0px rgba(255,255,255,1),
+   7px 7px 20px 0px rgba(0,0,0,.4),
+   4px 4px 5px 0px rgba(0,0,0,.3);
+}
+.btn-6:before {
+  right: 0;
+  top: 0;
+  transition: all 500ms ease;
+}
+.btn-6:after {
+  left: 0;
+  bottom: 0;
+  transition: all 500ms ease;
+}
+.btn-6:hover{
+  background: transparent;
+  color: #76aef1;
+  box-shadow: none;
+}
+.btn-6:hover:before {
+  transition: all 500ms ease;
+  height: 100%;
+}
+.btn-6:hover:after {
+  transition: all 500ms ease;
+  height: 100%;
+}
+.btn-6 span:before,
+.btn-6 span:after {
+  position: absolute;
+  content: "";
+  box-shadow:
+   -1px -1px 20px 0px rgba(255,255,255,1),
+   -4px -4px 5px 0px rgba(255,255,255,1),
+   7px 7px 20px 0px rgba(0,0,0,.4),
+   4px 4px 5px 0px rgba(0,0,0,.3);
+}
+.btn-6 span:before {
+  left: 0;
+  top: 0;
+  width: 0%;
+  height: .5px;
+  transition: all 500ms ease;
+}
+.btn-6 span:after {
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: .5px;
+  transition: all 500ms ease;
+}
+.btn-6 span:hover:before {
+  width: 100%;
+}
+.btn-6 span:hover:after {
+  width: 100%;
+}
+
+.frame {
+  width: 90%;
+  margin: 40px auto;
+  text-align: center;
+}
+button {
+  margin: 20px;
+}
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+   7px 7px 20px 0px rgba(0,0,0,.1),
+   4px 4px 5px 0px rgba(0,0,0,.1);
+  outline: none;
+}
+
+
+
+</style>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Prediction Results</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Input Accepted</h5>
+                <div id="prediction"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a class="btn btn-primary" href="results" role="button">View Your Results</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <h1>Cancer Prediction</h1>
+            <form action="" id="post-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="Variance">Variance</label>
+                    <input type="number" step="0.1" class="form-control" id="Variance" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="Entropy">Entropy</label>
+                    <input type="number" step="0.1" class="form-control" id="Entropy" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="Skewness">Skewness</label>
+                    <input type="number" step="0.1" class="form-control" id="Skewness" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="Kurtosis">Kurtosis</label>
+                    <input type="number" step="0.1" class="form-control" id="Kurtosis" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="ASM">ASM</label>
+                    <input type="number" step="0.1" class="form-control" id="ASM" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="Homogeneity">Homogeneity</label>
+                    <input type="number" step="0.1" class="form-control" id="Homogeneity" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="Dissimilarity">Dissimilarity</label>
+                    <input type="number" step="0.1" class="form-control" id="Dissimilarity" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label for="Correlation">Correlation</label>
+                    <input type="number" step="0.1" class="form-control" id="Correlation" placeholder="" required>
+                </div>
+                <button type="submit" value="Submit" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal">Submit</button>
+            
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on('submit', '#post-form',function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'{% url "predict:submit_prediction" %}',
+            data:{
+                Variance:$('#Variance').val(),
+                Entropy:$('#Entropy').val(),
+                Skewness:$('#Skewness').val(),
+                Kurtosis:$('#Kurtosis').val(),
+                ASM:$('#ASM').val(),
+                Homogeneity:$('#Homogeneity').val(),
+                Dissimilarity:$('#Dissimilarity').val(),
+                Correlation:$('#Correlation').val(),
+                
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+            success:function(json) {
+                document.forms["post-form"].reset();
+                document.getElementById("prediction").innerHTML = json['result']
+                document.getElementById("va").innerHTML = json['Variance']
+                document.getElementById("en").innerHTML = json['Entropy']
+                document.getElementById("sk").innerHTML = json['Skewness']
+                document.getElementById("ku").innerHTML = json['Kurtosis']
+                document.getElementById("as").innerHTML = json['ASM']
+                document.getElementById("ho").innerHTML = json['Homogeneity']
+                document.getElementById("di").innerHTML = json['Dissimilarity']
+                document.getElementById("co").innerHTML = json['Correlation']
+                
+            },
+            error : function(xhr,errmsg,err) {
+
+            }
+        });
+    })
+</script>
+
+{% endblock %}
+

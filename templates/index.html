@@ -1,0 +1,528 @@
+
+{% load static %}
+<title>Brain Tumor</title>
+
+
+
+<!doctype html>
+<html lang='en'>
+<head>
+
+<style>body {
+    background-color: black;
+}
+img {  
+  position: relative;
+}
+
+/* style this to fit your needs */
+/* and remove [alt] to apply to all images*/
+img[alt]:after {  
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 2;  
+  text-align: center;
+  content: attr(alt);
+}
+.no-display {
+    display: none;
+}
+
+#main{
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://cytecare.com/wp-content/uploads/2020/09/brain-tumors-in-children-1200x720.jpg');
+    background-size: cover;
+    color: black;
+}
+
+.title {
+    font-size: 30px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #262626;
+}
+
+.start{
+    margin-left: 5rem;
+    
+}
+
+.statement{
+    font-size: 1.3 rem;
+    color: #570530;
+}
+
+.instruction-title{
+    font-weight: 500;
+    font-size: 2rem;
+}
+.instruction-data{
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+#result-label{
+    font-size: 1.6rem;
+    color: #5D8BF4 !important;
+}
+
+#severity-label{
+   
+    font-size: 1.6rem;
+    color: #5D8BF4 !important;  
+}
+.guidance{
+    background-color: #E0DDAA;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    min-width: 90px;
+    display: inline-block;
+    font-family: 'League Spartan', sans-serif;
+
+}
+
+#severity-info{
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.2rem;
+    color: #8492a6 !important;
+}
+
+#result-info{
+    font-family: 'League Spartan', sans-serif;
+    font-size: 1.2rem;
+    color: #8492a6 !important;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .greeting {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    .statement{
+        font-size: 1.5rem;
+    }
+    .firstButton{
+        padding: 10px 20px;
+        font-size: 60px;
+        border-radius: 10px;
+    }
+    .instruction-title{
+        font-size: 3rem;
+    }
+    .instruction-data{
+        font-weight: 900;
+    
+        font-size: 2rem;
+    }
+    #main{width: 100%;
+        height: 48vh;
+        background-image: url('https://mahoneydermatology.com/wp-content/uploads/2020/12/My-Post-53.png');
+        background-size: cover;
+        color: black;
+    }
+    .instruction{
+        font-weight: 900;
+        font-size: 2rem;
+	}
+	.guidance{
+    margin-left: 10px;
+	}
+	.card{
+    margin-bottom: 20px;
+	}
+    
+  }
+
+
+.navbar{
+    width: 100%;
+    height: 7rem;
+    opacity: 0.8;
+}
+
+.instruction{
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.upload{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2rem;
+}
+
+.name{
+    font-size: 2.5rem;
+    position: absolute;
+    margin-left: 6rem;  
+    font-family: 'Comfortaa', cursive ;
+    color: #4C0027;
+}
+
+.greeting{
+    color: black;
+	    font-weight: 900;
+    margin-top: 8rem;
+    font-family: 'Quicksand', sans-serif;
+    
+    
+}
+
+.blog-card{
+    margin-top: 5rem;
+}
+
+.blog-card:hover{
+    transform: scale(1.1);
+  }
+
+.center {
+    margin: auto;
+    padding: 10px 50px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.container{
+    margin: 0px;
+}
+
+.content {
+    margin-top: 2rem;
+}
+
+.analyze {
+    width: 1000px;
+    margin-top: 5em;
+}
+
+.info{
+    width: 34%;
+    text-align: center;
+    margin-left: 150px;
+    margin-top: 40px;
+}
+
+.upload-label {
+    padding: 10px;
+    font-size: 12px;
+}
+
+.result-label {
+    margin-top: 0.5em;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.severity-label {
+    margin-top: 0.5em;
+    padding: 10px;
+    font-size: 13px;
+}
+
+
+button.choose-file-button {
+    width: 100px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: #ffffff;
+    border: solid 1px #7052CB;
+    font-size: 13px;
+    color: #7052CB;
+}
+
+button.analyze-button {
+    width: 320px;
+    height: 80px;
+ 
+    border-radius: 2px;
+    background-color: #0971e4;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+button:focus {
+    outline: 0;
+}
+
+
+.footer {
+	text-align: center;
+	width: 100%;
+	height: 60px;
+	background-color: #1abc9c;
+    
+}
+
+.display_none{
+    display: none !important;
+}
+
+
+
+.copyright{
+    font-size: 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    padding-top: 1rem;
+
+}
+
+.imgContainer{
+      display: flex;
+  justify-content: center;
+
+  
+
+   text-align: center;
+  
+}
+
+
+
+.strokeme
+{
+    font-size: 1.2rem;
+	    font-weight: 900;
+  
+}
+</style>
+  <meta charset='utf-8'>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap" rel="stylesheet">
+  <script src='../static/client.js'></script>
+</head>
+<body onload=reloadimg() >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="results">DB</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Use Machine Learning</a>
+                </li>
+                <li class="nav-item">
+                    <font size = "5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Deep Learning</font><br /></a>
+                   
+               </li>
+            </ul>
+        </div>
+        
+    </nav>
+
+  <div id='main'>
+    <nav class="navbar navbar-light bg-light ">
+      <div class="container-fluid">
+        <a class="navbar-brand " href="#">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <img src="data:image/png;base64,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" alt="" width="60" height="70" class="d-inline-block align-text-top">
+        </a>
+        <span class='name' style="color:black">Tumordc.AI</span>
+      </div>
+    </nav>
+  
+
+  <div class='row '>
+    <div class='col-sm-1 col-lg-2'>
+    </div>
+    <div class='col-sm-9 col-lg-8'>
+    <h1 class="greeting"><font size="8"
+          face="verdana"
+        
+          >
+          Brain tumor detection and classification using artifical intelligence
+    </font></h1>
+    <p class="strokeme"><b ><font size="6"
+          face="verdana"
+  >
+         The primary goal of the AI system is to reduce the frequency of false-positive findings. It can detect the tumor, its grade and type using a pre-trained model. Try it now!
+    </font></b></p><br>
+    <button type="button" class="btn analyze-button" onclick="window.location.href='#analyze'">Analyze an image</button>
+    </div>
+    <div class='col-sm-2 col-lg-2'>
+    </div>
+  </div>
+</div>
+<hr>
+
+
+<div class='row instruction'>
+  <div class='instruction-title'>Still Confused?</div>
+  <div class='instruction-data'>Follow 3 easy steps to understand your problem.</div>
+</div>
+
+  <div class="container">
+    <div class="row">
+      <div class='col-lg-4 col-sm-12'>
+      <div class="card border border-success blog-card" style="width: 15Srem;">
+      <img class="card-img-top" src="https://th.bing.com/th/id/OIP.tvHwtuRSDclE0kyoQQGUXwHaEL?pid=ImgDet&rs=1" width="400" height="250" alt="Card image cap">
+      <div class="card-body"><br>
+      <div class='instruction-data'>1.Select a M.R.I image of the brain.</div>
+      </div>
+      </div>
+      </div>
+
+
+      <div class='col-lg-4 col-sm-12'>
+      <div class="card border border-success blog-card" style="width: 15Srem;">
+      <img class="card-img-top" src="https://thumbs.dreamstime.com/b/uploading-upload-data-download-information-concept-70985291.jpg" width="400" height="250" alt="Card image cap">
+      <div class="card-body"><br>
+
+      <div class='instruction-data'>2.Upload the picture and click on the analyze button </div>
+
+      </div>
+      </div>
+      </div>
+
+      <div class='col-lg-4 col-sm-12'>
+      <div class="card border border-success blog-card" style="width: 15Srem;">
+      <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaHQobCaFuURz5SpoLyrN2kAt6qA8FHdrYeQ&usqp=CAU"  width="400" height="250" alt="Card image cap">
+      <div class="card-body">
+      <div class='instruction-data' >3. Get the pre-diagnosis reports with just a few clicks!</div>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<hr>
+
+  <div class='center' id='analyze'>
+    <div class="instruction-title" style="font-family: 'Quicksand', sans-serif;">
+      Upload the image
+    </div>
+    <div class='content'>
+      <div class='no-display'>
+        <input id='file-input'
+               class='no-display'
+               type='file'
+               name='file'
+               accept='image/*'
+               onchange='showPicked(this)'>
+      </div>
+      
+ 
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+		 
+        <input type="file" required  class="btn btn-outline-success btn-lg"  name="imageFile" />
+ 
+        <input type="submit"  required class="btn btn-outline-success btn-lg"  name="submit" value="Upload" /> 
+    </form> 
+      <div class='upload-label'>
+      <div class="image123">
+	  
+	  
+	 <div class="imgContainer"> 
+    <div class="imgContainer">
+      
+    
+      
+        {% if original %}
+        <figure>
+            <br><br>
+        <img id="myImage" alt="" src={{filePathName}}  width="250" height="250" >
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<figcaption></figcaption>
+    
+        <h3>Original</h3> 
+        {% else %}
+        <h3></h3> 
+        {% endif %}
+    
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </figure>
+        </div>
+         <div class="imgContainer">
+       
+       
+    </figcaption>
+         
+   
+    {% if original %} 
+	
+    <figure>
+        <br>
+        <br>
+        {% load static %}  <img  alt="" id="pic" src="{% static 'core\static\images\images.jpg'%}" width="250" height="250" >
+   <h3>Segmented </h3> 
+  
+    <figcaption>
+
+       
+		
+       
+    </figcaption>
+
+</figure>
+{% else %}
+<h3></h3> 
+{% endif %}
+
+       
+    </div>
+   <br><br/>
+</div>
+
+      <figure>
+	
+    </figcaption>
+	 <font size = "2"><h2>{{predictions}}</h2></font><br /><h2>{{r1}}</h2>
+        <font size = "2"><h2>{{result1}}</h2></font><br /><h2>{{r1}}</h2>
+        
+        {% load  static %}
+        
+    
+    </div>
+
+</div>
+"><font size="5"
+          face="verdana"
+          >
+
+    </font>
+
+      </div>
+	    <div class="row">
+    <div class="col-lg-12 col-sm-12">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="footer">
+	
+      <p class='copyright'>Copyright © Tumordc.AI</p>
+    </div>
+      <div>
+
+        <script>
+            function reloadimg(){
+                var src = "{% static 'core\static\images\images.jpg' %}";
+                imageObject = document.getElementById("pic");
+                imageObject.style.display = 'inline-block';
+                imageObject.src = src;  
+            }
+        </script>
+</body>
+</html>
+
